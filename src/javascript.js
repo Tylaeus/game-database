@@ -22,6 +22,8 @@ function addGame() {
 	} else {
 		
 		// if all the fields are filled in, pass everything to the php via ajax
+		// this also now closes the modal and reloads the main page.
+		
 		$.ajax({
 			type: 'POST',
 			url: 'addGame.php',
@@ -35,4 +37,76 @@ function addGame() {
 
 	}
 	return false;
+}
+
+function openEditModal(id) {
+	
+	// open the edit modal and add the details of the currently selected game
+	
+	var gameID = id;
+	var dataString = 'gameID=' + gameID;
+	
+	$.ajax({
+		type: 'POST',
+		url: 'viewGame.php',
+		data: dataString,
+		dataType: 'json',
+		cache: false,
+		success: function(data) {
+			var result = data;
+			$('#editTitle').val(result['title']);
+			$('#editRating').val(result['rating']);
+			$('#editGenre').val(result['genre']);
+			$('#editDescription').val(result['description']);
+			$('#editPlatform').val(result['platform']);
+			document.getElementById('editGameBtn').setAttribute('onclick', 'editGame(' + gameID + ')');
+		}
+	});
+	
+	$('#editModal').modal('show');
+	
+	return;
+	
+}
+
+function editGame(id) {
+	
+	// apply the edit changes and update the database to reflect them
+	
+	// ajax to send the updated details to the database and update the game chosen
+	// this will send to the edit game php file and return if it is successful or not.
+	// alert only if this doens't work properly.
+	
+	var gameID = id;
+	var title = document.getElementById('editTitle').value;
+	var rating = document.getElementById('editRating').value;
+	var genre = document.getElementById('editGenre').value;
+	var description = document.getElementById('editDescription').value;
+	var platform = document.getElementById('editPlatform').value;
+	
+	var dataString = "id=" + gameID + "&title=" + title + "&rating=" + rating + "&genre=" + genre +
+					 "&description=" + description + "&platform=" + platform;
+					 
+	if ('' == title || '' == rating || '' == genre || '' == description || '' == platform)
+	{
+		
+		alert("Please make sure none of the fields are empty");
+		
+	} else {
+		
+		$.ajax({
+			type: 'POST',
+			url: 'editGame.php',
+			data: dataString,
+			cache: false,
+			success: function(data) {
+				$('#editModal').modal('hide');
+				document.location.reload();
+			}
+		});
+		
+	}
+	
+	return;
+	
 }

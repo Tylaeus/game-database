@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+	<!-- Include a link to the glyphicons website as part of using them in bootstrap 
+		 This will be on the about page once that is added into the table -->
+
 	<title>Game Database</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--<link href="style.css" rel="stylesheet" type="text/css" >-->
@@ -9,7 +13,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="javascript.js"></script>
 </head>
-<body style='padding-top:70px;'>
+<body style="padding-top:70px;":>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container"> 
         <div class="navbar-header">
@@ -23,9 +27,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a class="view-menu" href="#" data-for=".view">View Games</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#addNewModal">Add Game</a></li>
-            <li><a  class="about-menu" href="#" data-for=".about">About</a></li>
+            <li class="active"><a class="view-menu" href="#" data-for=".view"><span class="glyphicon glyphicon-th-large"></span> View Games</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#addNewModal"><span class="glyphicon glyphicon-plus"></span> Add Game</a></li>
+            <li><a  class="about-menu" href="#" data-for=".about"><span class="glyphicon glyphicon-user"></span> About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -38,7 +42,7 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">Add New Game</h4>
 				</div>
-				<form action="addGame.php" method="POST">
+				<form>
 				<div class="modal-body">
 					<table class="table">
 						<tr><td>Game Title: </td>
@@ -63,52 +67,45 @@
 		</div>
 	</div>
 	
-	<!-- KEPT IN JUST FOR REFERENCE PURPOSES, WILL BE REMOVED LATER ON
-	
-	<div class="container">
-		<div class="row">
-			<div class = "col-xs-6 col-sm-3" style = "background-color: #dedef8;
-         box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
-         
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </div>
-      
-      <div class = "col-xs-6 col-sm-3" style = "background-color: #dedef8;
-         box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
-         
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-            enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-            nisi ut aliquip ex ea commodo consequat.</p>
-         
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
-            eiusmod tempor incididunt ut.</p>
-      </div>
+	<div class="modal fade" id="editModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div  class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Edit Game</h4>
+				</div>
+				<form>
+				<div class="modal-body">
+					<table class="table">
+						<tr><td>Game Title: </td>
+						<td><input type="text" name="editTitle" id="editTitle"></td>
+						</tr><tr><td>Game Rating:</td>
+						<td><input type="text" name="editRating" id="editRating"></td>
+						</tr><tr><td>Game Genre:</td>
+						<td><input type="text" name="editGenre" id="editGenre"></td>
+						</tr><tr><td>Game Description:</td>
+						<td><input type="text" name="editDescription" id="editDescription"></td>
+						</tr><tr><td>Game Platform:</td>
+						<td><input type="text" name="editPlatform" id="editPlatform"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" name="submit" id="editGameBtn">Edit</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
-      <div class = "clearfix visible-xs"></div>
-      
-      <div class = "col-xs-6 col-sm-3" style = "background-color: #dedef8;
-         box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
-         
-         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-            laboris nisi ut aliquip ex ea commodo consequat.</p>
-      </div>
-      
-      <div class = "col-xs-6 col-sm-3" style = "background-color: #dedef8;
-         box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
-         
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-            enim ad minim</p>
-      </div>
-	</div> -->
-	<div class="well">
+	<div class="container">
 	<table class="table table-condensed">
 	<thead>
 	<tr>
-		<th>Title</th>
-		<th>Platform</th>
-		<th></th>
+		<th class='col-md-6'>Title</th>
+		<th class='col-md-3'>Platform</th>
+		<th class='col-md-3'></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -116,6 +113,9 @@
 	
 	// This is now working so I can get onto the more advanced stuff and get things working properly.
 	// Still need to do some research into the best practices for web interfaces to databases.
+	// maybe need to change it so the click to expand is only on the title and nothing else.
+	// will try this sometime soon so that I can utilise the edit button properly
+	// not sure if the edit button is working correctly yet. need to finalise the opening of the modal first.
 	
 	include ("connect.php");
 	
@@ -131,7 +131,8 @@
 			echo $row['title'];
 			echo "</td><td>";
 			echo $row['platform'];
-			echo "</td><td><a href='#' data-toggle='modal' data-target='#editModal' name=" . $row['id'] . ">Edit</a>";
+			echo "</td><td><div class='btn-toolbar'><button class='btn' type='button' onClick='openEditModal(" . $row['id'] . ")'><span class='glyphicon glyphicon-pencil'></span> Edit</button>";
+			echo "<button class='btn' type='button' onClick='deleteGame(" . $row['id'] . ")'><span class='glyphicon glyphicon-trash'></span> Delete</button></div></td>";
 			echo "</td></tr><tr>";
 			echo "<td colspan='3' style='padding: 0;'><div class='accordion-body collapse' id='".$row['id']."'>" . $row['description'] . "</td>";
 			echo "</tr>";
@@ -141,6 +142,7 @@
 	include ("disconnect.php");
 	
 	?>
+	
 	</tbody>
 	</table>
 	</div>
