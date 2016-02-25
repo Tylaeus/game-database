@@ -99,6 +99,25 @@
 		</div>
 	</div>
 
+	<div class="modal fade" id="deleteModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div  class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Confirm Delete</h4>
+				</div>
+				<form>
+				<div class="modal-body">
+					Are you sure you want to delete this game?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" name="submit" id="deleteBtn" onClick="deleteGame()" data-id="">Delete</button>
+					<button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 	<table class="table table-condensed">
 	<thead>
@@ -116,6 +135,7 @@
 	// maybe need to change it so the click to expand is only on the title and nothing else.
 	// will try this sometime soon so that I can utilise the edit button properly
 	// not sure if the edit button is working correctly yet. need to finalise the opening of the modal first.
+	// will move this to an external php file at some point, but for now it can stay here to keep it easier to modify.
 	
 	include ("connect.php");
 	
@@ -131,8 +151,8 @@
 			echo $row['title'];
 			echo "</td><td>";
 			echo $row['platform'];
-			echo "</td><td><div class='btn-toolbar'><button class='btn' type='button' onClick='openEditModal(" . $row['id'] . ")'><span class='glyphicon glyphicon-pencil'></span> Edit</button>";
-			echo "<button class='btn' type='button' onClick='deleteGame(" . $row['id'] . ")'><span class='glyphicon glyphicon-trash'></span> Delete</button></div></td>";
+			echo "</td><td><div class='btn-toolbar'><button class='btn btn-info' type='button' onClick='openEditModal(" . $row['id'] . ")'><span class='glyphicon glyphicon-pencil'></span> Edit</button>";
+			echo "<button class='btn btn-danger' type='button' data-toggle='modal' data-target='#deleteModal' onClick='deleteModal(".$row['id'].")')><span class='glyphicon glyphicon-trash'></span> Delete</button></div></td>";
 			echo "</td></tr><tr>";
 			echo "<td colspan='3' style='padding: 0;'><div class='accordion-body collapse' id='".$row['id']."'>" . $row['description'] . "</td>";
 			echo "</tr>";

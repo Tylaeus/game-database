@@ -9,23 +9,17 @@
 		
 		// use id from the POST value to return all the values of the selected game
 		
-		$id = pg_escape_string($connect, $_POST['gameID']);
+		$id = pg_escape_string($connect, $_POST['id']);
 		
-		$statement = "SELECT * FROM GAMES WHERE (ID='$id')";
+		$statement = "DELETE FROM GAMES WHERE (ID='$id')";
 		
 		$result = pg_query($connect, $statement);
 		
-		if($result)
+		$rows = pg_affected_rows($result);
+		
+		if($rows > 0)
 		{
-			// create the JSON string to be returned to original caller
-			while ($row = pg_fetch_assoc($result)) 
-			{
-				$data = array("title" => $row['title'], "rating" => $row['rating'],
-							 "genre" => $row['genre'], "description" => $row['description'],
-							 "platform" => $row['platform']);
-			}
-			
-			echo json_encode($data);
+			echo "Deleted row successfully";
 			
 		} else {
 			

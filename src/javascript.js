@@ -110,3 +110,33 @@ function editGame(id) {
 	return;
 	
 }
+
+function deleteModal(id) {
+	var btn = document.getElementById('deleteBtn');
+	var gameID = id;
+	
+	btn.setAttribute('data-id', gameID);
+}
+
+function deleteGame() {
+	
+	// This function will pop up a window for confirmation of the deletion oof the selected item
+	
+	var btn = document.getElementById('deleteBtn');
+	var gameID = $(btn).data("id");
+	
+	var dataString = "id=" + gameID;
+	
+	$.ajax({
+		type: 'POST',
+		url: 'deleteGame.php',
+		data: dataString,
+		cache: false,
+		success: function(data) {
+			alert(data);
+			$('#deleteModal').modal('hide');
+			document.location.reload();
+		}
+	});
+	
+}
