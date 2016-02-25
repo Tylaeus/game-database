@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 
 	<!-- Include a link to the glyphicons website as part of using them in bootstrap 
@@ -13,7 +13,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="javascript.js"></script>
 </head>
-<body style="padding-top:70px;":>
+<body style="padding-top: 70px;">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container"> 
         <div class="navbar-header">
@@ -118,7 +118,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container-fluid">
 	<table class="table table-condensed">
 	<thead>
 	<tr>
@@ -152,9 +152,13 @@
 			echo "</td><td>";
 			echo $row['platform'];
 			echo "</td><td><div class='btn-toolbar'><button class='btn btn-info' type='button' onClick='openEditModal(" . $row['id'] . ")'><span class='glyphicon glyphicon-pencil'></span> Edit</button>";
-			echo "<button class='btn btn-danger' type='button' data-toggle='modal' data-target='#deleteModal' onClick='deleteModal(".$row['id'].")')><span class='glyphicon glyphicon-trash'></span> Delete</button></div></td>";
-			echo "</td></tr><tr>";
-			echo "<td colspan='3' style='padding: 0;'><div class='accordion-body collapse' id='".$row['id']."'>" . $row['description'] . "</td>";
+			echo "<button class='btn btn-danger' type='button' data-toggle='modal' data-target='#deleteModal' onClick='deleteModal(".$row['id'].")' )><span class='glyphicon glyphicon-trash'></span> Delete</button></div></td>";
+			echo "</tr><tr>";
+			echo "<td colspan='3' style='padding: 0;'><div class='accordion-body collapse' id='".$row['id']."'>";
+			echo "<div class='row'>";
+			echo "<div class='col col-md-2'>".$row['genre']."</div>";
+			echo "<div class='col col-md-2'>".$row['rating']."</div>";
+			echo "<div class='col col-md-6'>" . $row['description'] . "</div></div></div></td>";
 			echo "</tr>";
 		}
 	}
@@ -165,8 +169,6 @@
 	
 	</tbody>
 	</table>
-	</div>
-	  
 	</div>
 	
 </body>
