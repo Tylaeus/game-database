@@ -23,9 +23,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a class="view-menu" href="#" data-for=".view"><span class="glyphicon glyphicon-th-large"></span> View Games</a></li>
+            <li class="active"><a class="view-menu" href="#"><span class="glyphicon glyphicon-th-large"></span> View Games</a></li>
             <li><a href="#" data-toggle="modal" data-target="#addNewModal"><span class="glyphicon glyphicon-plus"></span> Add Game</a></li>
-            <li><a  class="about-menu" href="#" data-for=".about"><span class="glyphicon glyphicon-user"></span> About</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#aboutModal"><span class="glyphicon glyphicon-user"></span> About</a></li>
           </ul>
         </div>
       </div>
@@ -111,6 +111,24 @@
 					<button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
 				</div>
 				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="aboutModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">About</h4>
+				</div>
+				<div class="modal-body">
+					<p>Created By Mark Espie</p>
+					<p>Using <a href="http://glyphicons.com">Glyphicons</a></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
 			</div>
 		</div>
 	</div>
